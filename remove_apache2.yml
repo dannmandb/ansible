@@ -12,7 +12,7 @@
     apt:
       upgrade: dist
 
-  - name: install apache2 package
+  - name: remove apache2 package
     apt: 
       name: apache2
       state: absent
