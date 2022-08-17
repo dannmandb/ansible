@@ -15,24 +15,12 @@
     debug:
       msg: "{{updatesys.stdout_lines|last}}"
 
-- hosts: web_servers
-  become: true
-  tasks:
-
-  - name: install apache2 & libapache2-mod-php packages
-    apt: 
-      name:
-        - apache2
-        - libapache2-mod-php
-      state: absent
-
 - hosts:
     - test_servers
-    - web_servers
   become: true
   tasks:
 
-  - name: install packages for mediaservers
+  - name: install packages for test_servers
     apt:
       name:
         - docker

@@ -1,0 +1,17 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks: 
+
+  - name: update & upgrade repository index
+    register: updatesys
+    apt:
+      update_cache: yes
+      upgrade: dist
+      cache_valid_time: 3600
+
+  - name: Display the last line of the previous task to check stats
+    debug:
+      msg: "{{updatesys.stdout_lines|last}}"
+

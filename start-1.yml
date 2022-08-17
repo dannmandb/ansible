@@ -1,6 +1,6 @@
 ---
 
-- hosts: all
+- hosts: test_servers
   become: true
   pre_tasks: 
 
@@ -30,23 +30,3 @@
       - /opt/appdata/docker/sys/test
       - /opt/appdata/docker/lab/test
       - /srv/www
-      - /home/daniel/docker/test
-
-  - name: Ensure docker-compose.yml file.
-    template:
-      src: /home/daniel/docker/test/docker-compose.yml
-      dest: "/home/daniel/docker/test/docker-compose.yml"
-      group: docker
-      mode: 0775
-      backup: yes
-      lstrip_blocks: yes
-      trim_blocks: yes
-
-  - name: Ensure containers defined in compose file.
-    docker_compose:
-      project_src: "/home/daniel/docker/test/"
-      project_name: "define docker-compose"
-      pull: "true"
-      state: "present"
-      remove_orphans: "true"
-    when: not ansible_check_mode
