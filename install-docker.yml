@@ -23,7 +23,7 @@
 
   - name: add docker repo
     apt_repository:
-      repo: deb https://download.docker.com/linux/ubuntu focal stable
+      repo: deb https://download.docker.com/linux/ubuntu jammy stable
 
   - name: install docker 
     apt:
@@ -31,6 +31,7 @@
         - docker-ce
         - docker-ce-cli
         - containerd.io
+        - docker-compose
       update_cache: yes
 
   - name: add user permissions

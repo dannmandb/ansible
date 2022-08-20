@@ -29,4 +29,3 @@
     with_items:
       - /opt/appdata/docker/sys/test
       - /opt/appdata/docker/lab/test
-      - /srv/www

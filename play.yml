@@ -1,0 +1,11 @@
+---
+- name: play
+  hosts: test_servers
+  become: false
+  gather_facts: false
+  tasks:
+    - name: clone git repo
+      git:
+        repo: "https://github.com/dannmandb/ansible/play.git
+        dest: "{{ lookup('env', 'HOME') }}/play"
+        version: main
