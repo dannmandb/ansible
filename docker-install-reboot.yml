@@ -53,13 +53,13 @@
       name:
         - docker
         - docker-compose
----
+
   - name: Patch the server and Reboot
     hosts: app
     tasks:
       - name: Patch the server
         become: yes
-        become_user: root
+        become_user: vagrant
         tags: Patch
         shell: "apt -y update"
         register: patchresult
