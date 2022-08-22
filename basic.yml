@@ -45,7 +45,7 @@
 
   - name: Ensure docker-compose.yml file.
     template:
-      src: ~/ansible/nginx/
+      src: ~/ansible/nginx/docker-compose.yml
       dest: "~/docker/test/nginx/"
       group: docker
       mode: 0644
@@ -55,7 +55,7 @@
 
   - name: Ensure containers defined in compose file.
     docker_compose:
-      project_src: "~/ansible/test/"
+      project_src: "~/docker/test/nginx"
       project_name: "define docker-compose"
       pull: "true"
       state: "present"
