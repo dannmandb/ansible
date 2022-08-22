@@ -41,12 +41,12 @@
       - /opt/appdata/docker/sys/test
       - /opt/appdata/docker/lab/test
       - /srv/www
-      - ~/docker/test
+      - ~/docker/test/nginx
 
   - name: Ensure docker-compose.yml file.
     template:
       src: ~/ansible/nginx/docker-compose.yml
-      dest: "/opt/appdata/docker/lab/test/nginx/docker-compose.yml"
+      dest: "~/docker/test/nginx/docker-compose.yml"
       group: docker
       mode: 0644
       backup: yes
