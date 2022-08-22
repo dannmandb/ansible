@@ -1,6 +1,6 @@
 ---
 
-- hosts: test_servers
+- hosts: localhost
   become: true
   pre_tasks: 
 
@@ -16,7 +16,7 @@
       msg: "{{updatesys.stdout_lines|last}}"
 
 - hosts:
-    - test_servers
+    - localhost
   become: true
   tasks:
 
@@ -33,19 +33,20 @@
     file:
       path: "{{ item }}"
       state: directory
-      owner: daniel
-      group: daniel
+      owner: vagrant
+      group: vagrant
       mode: 0775
       recurse: yes
     with_items:
       - /opt/appdata/docker/sys/test
       - /opt/appdata/docker/lab/test
       - /srv/www
+      - ~/docker/test
 
   - name: Ensure docker-compose.yml file.
     template:
-      src: /home/daniel/docker/docker-compose.yml
-      dest: "/home/daniel/docker/test/docker-compose.yml"
+      src: ~/docker/test/docker-compose.yml
+      dest: "~/docker/test/docker-compose.yml"
       group: docker
       mode: 0644
       backup: yes
@@ -54,7 +55,7 @@
 
   - name: Ensure containers defined in compose file.
     docker_compose:
-      project_src: "/home/daniel/docker/test/"
+      project_src: "~/docker/test/"
       project_name: "define docker-compose"
       pull: "true"
       state: "present"
