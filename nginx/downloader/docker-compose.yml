@@ -178,7 +178,7 @@ services:
       - PUID=1000
       - PGID=1000
       - VERSION=docker
-      - PLEX_CLAIM= claim-AyjqvZueZrhj6DuApHHB #optional
+      - PLEX_CLAIM= claim-Jby6mh-kYe4ig2ZvVoJE #optional
     volumes:
       - /opt/appdata/plex/library:/config
       - /opt/appdata/plex/media/tvseries:/tv
