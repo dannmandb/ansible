@@ -185,9 +185,21 @@ services:
       - /opt/appdata/plex/media/movies:/movies
       - /opt/appdata/plex/media/music:/music
     restart: unless-stopped
-    
+
+  yacht:
+    container_name: yacht
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+    volumes:
+      - yacht:/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    image: selfhostedpro/yacht
+
+
 volumes:
   db:
     driver: local
   cache:
     driver: local
+  yacht:
