@@ -184,6 +184,7 @@ services:
       - /opt/appdata/plex/media/tvseries:/tv
       - /opt/appdata/plex/media/movies:/movies
       - /opt/appdata/plex/media/music:/music
+      - ~/Downloads:/downloads
     restart: unless-stopped
 
   yacht:
@@ -213,3 +214,4 @@ volumes:
   cache:
     driver: local
   yacht:
+  
