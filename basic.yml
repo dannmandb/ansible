@@ -27,6 +27,7 @@
         - docker-compose
         - python3
         - python3-pip
+        - virtualbox
       state: latest
 
   - name: Creates directory
