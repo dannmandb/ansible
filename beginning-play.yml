@@ -1,6 +1,6 @@
 ---
 - name: play
-  hosts: all
+  hosts: localhost
   become: false
   gather_facts: false
   tasks:
@@ -9,8 +9,6 @@
         repo: "https://github.com/dannmandb/ansible.git"
         dest: "{{ lookup('env', 'HOME') }}/ansible"
         version: main
-
----
 
 - hosts: localhost
   become: true
