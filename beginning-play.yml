@@ -55,7 +55,7 @@
 
   - name: Ensure docker-compose.yml file.
     template:
-      src: ~/ansible/nginx/dbcache/docker-compose.yml
+      src: ~/ansible/nginx/downloader/docker-compose.yml
       dest: "~/docker/test/nginx/"
       group: docker
       mode: 0644
