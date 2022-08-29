@@ -1,0 +1,62 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks: 
+
+  - name: update & upgrade repository index
+    register: updatesys
+    apt:
+      update_cache: yes
+      upgrade: dist
+      cache_valid_time: 3600
+
+  - name: Display the last line of the previous task to check stats
+    debug:
+      msg: "{{updatesys.stdout_lines|last}}"
+
+- hosts:
+    - all
+  become: true
+  tasks:
+
+  - name: install packages for test_servers
+    apt:
+      name:
+        - docker
+        - docker-compose
+        - python3
+        - python3-pip
+      state: latest
+
+  - name: Creates directory
+    file:
+      path: "{{ item }}"
+      state: directory
+      group: daniel
+      mode: 0775
+      recurse: yes
+    with_items:
+      - /opt/appdata/docker/sys/test
+      - /opt/appdata/docker/lab/test
+      - /srv/www
+      - ~/docker/nginx
+
+  - name: Ensure docker-compose.yml file.
+    template:
+      src: ~/ansible/nginx/yacht/docker-compose.yml
+      dest: "~/docker/nginx/"
+      group: docker
+      mode: 0644
+      backup: yes
+      lstrip_blocks: yes
+      trim_blocks: yes
+
+  - name: Ensure containers defined in compose file.
+    docker_compose:
+      project_src: "~/docker/nginx"
+      project_name: "define docker-compose"
+      pull: "true"
+      state: "present"
+      remove_orphans: "true"
+    when: not ansible_check_mode

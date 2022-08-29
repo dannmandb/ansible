@@ -1,14 +1,17 @@
 [web_servers]
-192.168.56.13
+#192.168.56.13
 
 [db_servers]
-192.168.56.11
+#192.168.56.11
 
 [file_servers]
-192.168.56.12
+#192.168.56.12
 
 [media_servers]
-192.168.56.14
+#192.168.56.14
 
 [test_servers]
-192.168.56.13   ansible_connection=ssh   ansible_user=vagrant 
+#192.168.56.13   ansible_connection=ssh   ansible_user=vagrant 
+
+[dbn-utils]
+213.219.36.174   ansible_connection=ssh   ansible_user=daniel
